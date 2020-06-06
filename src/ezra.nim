@@ -68,4 +68,10 @@ proc loadPNG*(fn: string): Image =
     let rawRows = png_get_rows(png_ptr, info_ptr)
     let rows = cast[ptr UncheckedArray[ptr UncheckedArray[cuchar]]](rawRows)
 
+    result.data = newTensor[int](width, height, channels)
+    for y in 0..<height:
+        for x in 0..<width:
+            for c in 0..<channels:
+                result.data[x, y, c] = cast[int](rows[y][(x*3)+c])
+
     fp.close()
