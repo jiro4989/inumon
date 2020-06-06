@@ -1,9 +1,12 @@
 import nimterop/[build, cimport]
 
+{.passl: gorge("pkg-config libpng --cflags --libs").}
+
 setDefines(@["pngStd"])
 
 static:
-    cDebug()
+  cSkipSymbol(@["png_struct", "png_info"])
+  cDebug()
 
 cPlugin:
   import strutils
@@ -13,8 +16,4 @@ cPlugin:
 
 getHeader("png.h")
 
-cOverride:
-    type
-        png_struct_def = png_struct
-
-cImport(pngPath, recurse=true, flags="-c")
+cImport(pngPath, recurse=true, flags="-c -s")

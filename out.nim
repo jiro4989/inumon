@@ -1,9 +1,8 @@
 # Including library /usr/lib/libpng.so
-# Overriding png_struct_def
 # Importing /usr/include/png.h
-# Generated @ 2020-06-05T18:09:30+12:00
+# Generated @ 2020-06-06T17:53:45+12:00
 # Command line:
-#   /home/liam/.nimble/pkgs/nimterop-0.5.6/nimterop/toast --preprocess -m:c --recurse -c --pnim --symOverride=png_struct_def --nim:/usr/bin/nim --pluginSourcePath=/home/liam/.cache/nim/nimterop/cPlugins/nimterop_3151905606.nim /usr/include/png.h
+#   /home/liam/.nimble/pkgs/nimterop-0.5.6/nimterop/toast --preprocess -m:c --recurse -c -s --pnim --symOverride=png_struct,png_info --nim:/usr/bin/nim --pluginSourcePath=/home/liam/.cache/nim/nimterop/cPlugins/nimterop_4048768408.nim /usr/include/png.h
 
 import nimterop/types
 
@@ -187,7 +186,12 @@ const
 {.pragma: imppngC, imppng, cdecl.}
 
 type
-  png_struct_def = png_struct
+  png_struct = object
+  png_info = object
+  jmp_buf = object
+  png_control = object
+  tm = object
+  png_imagep = object
   png_byte* {.imppng.} = cuchar
   png_int_16* {.imppng.} = cshort
   png_uint_16* {.imppng.} = cushort
@@ -229,11 +233,9 @@ type
   png_doublepp* {.imppng.} = ptr ptr cdouble
   # Type 'png_charppp' skipped
   png_libpng_version_1_6_37* {.imppng.} = cstring
-  png_struct* {.imppng.} = png_struct_def
   png_const_structp* {.imppng.} = ptr png_struct
   png_structp* {.imppng.} = ptr png_struct
   png_structpp* {.imppng.} = ptr ptr png_struct
-  png_info* {.imppng.} = png_info_def
   png_infop* {.imppng.} = ptr png_info
   png_const_infop* {.imppng.} = ptr png_info
   png_infopp* {.imppng.} = ptr ptr png_info
