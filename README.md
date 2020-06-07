@@ -1,9 +1,14 @@
-<p align="center" style="font-size: 25px">
+<p align="center">
   <img src="media/banner.png"></img>
-  A high-level image I/O and manipulation library for Nim
-  <br>
-  <del>Documentation</del> | <a href="recipes.md">Recipes</a>
 </p>
+
+<h3 align="center">
+  A high-level image I/O and manipulation library for Nim
+</h3>
+
+<h4 align="center">
+  <del>Documentation</del> | <a href="recipes.md">Recipes</a>
+</h4>
 
 ---
 ## Features
