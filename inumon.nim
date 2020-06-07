@@ -1,4 +1,5 @@
 import inumon/libpng
+import inumon/libjpeg
 import arraymancer
 import nigui
 import random
@@ -64,7 +65,7 @@ proc loadPNG*(fn: string): Image =
             result.colorType = RGBA
             channels = 4
         else:
-            raise newException(OSError, "Unknown color type")
+            raise newException(IOError, "Unknown color type")
     
     result.bitDepth = cast[int](png_get_bit_depth(png_ptr, info_ptr))
 
@@ -119,12 +120,78 @@ proc writePNG*(image: Image, fn: string) =
     png_write_end(png_ptr, nil)
     fp.close()
 
+proc loadJPEG*(fn: string): Image =
+    let fp = open(fn)
+
+    let jpegDecompressor = tjInitDecompress()
+    let fSize = fp.getFileSize()
+    let fString = fp.readAll().cstring
+    let jpegBuf = cast[ptr cuchar](fstring)
+
+    var width: cint
+    var height: cint
+    var jpegSubsamp: cint
+    var jpegColorspace: cint
+    var jpegSize = cast[culong](fSize)
+
+    if cast[int](tjDecompressHeader3(jpegDecompressor, jpegBuf, jpegSize, width.addr, height.addr, jpegSubsamp.addr, jpegColorspace.addr)) == -1:
+        echo tjGetErrorStr2(jpegDecompressor)
+
+    result.size = (width: cast[int](width), height: cast[int](height))
+    
+    var imgBuf = cast[ptr cuchar](alloc(result.size.width * result.size.height * 3))
+    if cast[int](tjDecompress2(jpegDecompressor, jpegBuf, jpegSize, imgBuf, width, cast[cint](0), height, cast[cint](0), TJFLAG_ACCURATEDCT)) == -1:
+        echo tjGetErrorStr2(jpegDecompressor)
+    
+    let vals = cast[ptr UncheckedArray[cuchar]](imgBuf)
+    
+    result.data = newTensor[int](height.int, width.int, 3)
+    for y in 0..<height.int:
+        for x in 0..<width.int:
+            for c in 0..<3:
+                result.data[y, x, c] = vals[(width*y*3) + (x*3) + c].int
+    
+    result.colorType = RGB
+    result.bitDepth = 8
+
+proc writeJPEG*(image: Image, fn: string, quality: int) =
+
+    if image.data.shape[2] != 3:
+        raise newException(IOError, "Only RGB images are supported for JPEG write")
+
+    var tmp = cast[ptr UncheckedArray[cuchar]](alloc(image.size.width * image.size.height * 3 * sizeof(cuchar)))
+    var count = 0
+    for y in 0..<image.size.height:
+        for x in 0..<image.size.width:
+            for c in 0..<3:
+                tmp[count] = image.data[y, x, c].cuchar
+                count += 1
+    
+    let jpegCompressor = tjInitCompress()
+
+    var output: ptr cuchar
+    var jpegSize: culong
+
+    if tjCompress2(jpegCompressor, cast[ptr cuchar](tmp), image.size.width.cint, 0.cint, image.size.width.cint, 0.cint,
+          output.addr, jpegSize.addr, 0.cint, quality.cint, 0.cint).int == -1:
+              echo tjGetErrorStr2(jpegCompressor)
+    
+    let fp = open(fn, fmWrite)
+    discard fp.writeBuffer(output, jpegSize.int)
+    fp.close()
+
 proc loadImage*(fn: string): Image =
     let extension = fn.split('.')[^1]
     
     case extension:
         of "png":
             return loadPNG(fn)
+        of "jpeg":
+            return loadJPEG(fn)
+        of "jpg":
+            return loadJPEG(fn)
+        else:
+            raise newException(IOError, "Unsupported filetype")
 
 proc generateUUID(): string =
     randomize()

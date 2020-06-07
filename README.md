@@ -11,9 +11,9 @@
 ---
 ## Features
 - [x] PNG read/write
+- [x] JPEG read/write (only RGB supported)
 - [x] High-level pixel manipulation with *arraymancer*
 - [X] Image display with *nigui*
-- [ ] JPEG read/write (very almost done)
 - [ ] Basic image transforms (will be quick to impliment)
 
 ## Installation

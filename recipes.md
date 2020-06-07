@@ -23,3 +23,11 @@ import inumon
 let img = loadImage("image.png")
 echo img.data[1, 2, _]
 ```
+
+## Load a JPEG and save it as a PNG
+```Nim
+import inumon
+
+let img = loadImage("input.jpg")
+img.writePNG("output.png")
+```
