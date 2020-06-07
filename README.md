@@ -23,10 +23,12 @@ Nimble package listing coming soon! For now, you can install with:
 `nimble install https://github.com/dizzyliam/inumon`
 
 ### External dependencies
-Image read/write currently requires *libpng* and *libjpeg-turbo*, which are both GNU/Linux only libraries. They will likely already be installed on your system, but you can make sure with the following commands.
+Image read/write currently requires *libpng* and *libjpeg-turbo*. They will likely already be installed on your system, but you can make sure with the following commands.
 
 **Arch based:**
 `sudo pacman -Syu libpng libjpeg-turbo`
 
 **Debian based:**
 `sudo apt-get install libpng-dev libjpeg-turbo`
+
+*Windows support is untested*
