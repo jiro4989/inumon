@@ -7,4 +7,5 @@ license     = "MPL 2.0"
 # Deps
 requires "nim >= 1.0.0",
     "nimterop >= 0.5.0",
-    "arraymancer >= 0.5.0"
+    "arraymancer >= 0.5.0",
+    "nigui >= 0.2.0"

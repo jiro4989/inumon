@@ -1,6 +1,4 @@
 import inumon
-import arraymancer
-import nimpy
 
 let png = loadImage("tests/gray.png")
 
