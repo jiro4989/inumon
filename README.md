@@ -4,11 +4,9 @@
 
 <h3 align="center">
   A high-level image I/O and manipulation library for Nim
-</h3>
-
-<h4 align="center">
+  <br>
   <del>Documentation</del> | <a href="recipes.md">Recipes</a>
-</h4>
+</h3>
 
 ---
 ## Features
