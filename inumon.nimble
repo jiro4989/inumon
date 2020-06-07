@@ -1,5 +1,4 @@
 # Package
-name        = "Inumon"
 version     = "0.1.0"
 author      = "Liam Scaife"
 description = "A high-level image I/O library for Nim "
