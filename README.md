@@ -1,6 +1,7 @@
 <p align="center" style="font-size: 25px">
   <img src="media/banner.png"></img>
-  A high-level image I/O and manipulation library for Nim 
+  A high-level image I/O and manipulation library for Nim
+  <br>
   <del>Documentation</del> | <a href="recipes.md">Recipes</a>
 </p>
 
