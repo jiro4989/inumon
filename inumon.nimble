@@ -2,7 +2,7 @@
 version     = "0.1.0"
 author      = "Liam Scaife"
 description = "A high-level image I/O library for Nim "
-license     = "MPL 2.0"
+license     = "GNU GPL v3"
 
 # Deps
 requires "nim >= 1.0.0",
