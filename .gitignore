@@ -1,5 +1,5 @@
 nimcache/
 nimblecache/
 htmldocs/
-tests/load
+tests/testLoad
 tests/out.png

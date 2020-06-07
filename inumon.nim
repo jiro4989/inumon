@@ -1,4 +1,4 @@
-import libpng
+import inumon/libpng
 import arraymancer
 import nigui
 import random
