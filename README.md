@@ -5,7 +5,7 @@
 <h3 align="center">
   A high-level image I/O and manipulation library for Nim
   <br>
-  <del>Documentation</del> | <a href="recipes.md">Recipes</a>
+  - <del>Documentation</del> | <a href="recipes.md">Recipes</a> -
 </h3>
 
 ---
