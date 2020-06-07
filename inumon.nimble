@@ -1,5 +1,5 @@
 # Package
-version     = "0.1.0"
+version     = "0.1.1"
 author      = "Liam Scaife"
 description = "A high-level image I/O library for Nim "
 license     = "MPL 2.0"
