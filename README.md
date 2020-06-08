@@ -18,9 +18,9 @@
 
 ## Installation
 
-Nimble package listing coming soon! For now, you can install with:
+Install from nimble with:
 
-`nimble install https://github.com/dizzyliam/inumon`
+`nimble install inumon`
 
 ### External dependencies
 Image read/write currently requires *libpng* and *libjpeg-turbo*. They will likely already be installed on your system, but you can make sure with the following commands.
