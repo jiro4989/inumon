@@ -31,3 +31,12 @@ import inumon
 let img = loadImage("input.jpg")
 img.writePNG("output.png")
 ```
+
+## Load an image and reshape it to half the width
+```Nim
+import inumon
+
+let img = loadImage("image.png")
+img.reshape(toInt(img.size.width/2), img.size.height).showImage()
+```
+*This only works if the target dimensions are factors of the source dimensions*

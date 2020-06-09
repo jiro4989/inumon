@@ -5,7 +5,7 @@
 <h3 align="center">
   A high-level image I/O and manipulation library for Nim
   <br>
-  - <del>Documentation</del> | <a href="recipes.md">Recipes</a> -
+  - <del>Documentation</del> (soon) | <a href="recipes.md">Recipes</a> -
 </h3>
 
 ---
@@ -14,7 +14,10 @@
 - [x] JPEG read/write (only RGB supported)
 - [x] High-level pixel manipulation with *arraymancer*
 - [X] Image display with *nigui*
-- [ ] Basic image transforms (will be quick to impliment)
+- Basic image transforms:
+  - [X] Reshape/scale
+  - [ ] Change between color types (soon)
+  - [ ] Hue/saturation/value (soon)
 
 ## Installation
 
