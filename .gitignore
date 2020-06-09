@@ -3,4 +3,5 @@ nimblecache/
 htmldocs/
 tests/testLoad
 tests/testJpeg
+tests/testScale
 tests/out.png
