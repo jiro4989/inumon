@@ -40,5 +40,14 @@ jobs:
         with:
           nim-version: ${{ matrix.nim-version }}
 
+      # see. https://github.com/actions/virtual-environments/issues/675
+      - name: Fix apt packages
+        run: |
+          sudo sed -i 's/azure\.//' /etc/apt/sources.list
+          sudo apt update -yqq
+
+      - name: Install dependencies
+        run: sudo apt-get install -y libpng-dev libjpeg-turbo8
+
       - run: nimble install -Y
       - run: nimble test -Y
